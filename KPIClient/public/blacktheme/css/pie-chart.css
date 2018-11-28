@@ -1,0 +1,51 @@
+﻿body {
+    background-color: #009688;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    margin-bottom: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: normal;
+    text-align: center;
+}
+
+    h1 span {
+        display: block;
+        font-size: 15px;
+    }
+
+.pie-chart {
+    max-width: 400px;
+    margin: 70px auto;
+}
+
+.d3-tip {
+    font-size: 14px;
+    -webkit-transition: 0.3s opacity linear, 0.3s -webkit-transform linear;
+    transition: 0.3s opacity linear, 0.3s -webkit-transform linear;
+    transition: 0.3s opacity linear, 0.3s transform linear;
+    transition: 0.3s opacity linear, 0.3s transform linear, 0.3s -webkit-transform linear;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px 15px;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+    color: #333;
+    text-align: center;
+}
+
+    .d3-tip p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .d3-tip.is-active {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+.d3-tip__label {
+    font-weight: bold;
+}

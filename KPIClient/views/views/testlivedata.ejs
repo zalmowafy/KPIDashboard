@@ -1,0 +1,942 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+	<style>
+		* {
+			box-sizing: border-box
+		}
+
+		/* Set height of body and the document to 100% */
+		body, html {
+			height: 100%;
+			margin: 0;
+			font-family: Arial;
+		}
+
+		/* Style tab links */
+		.tablink {
+			background-color: #555;
+			color: white;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 14px 16px;
+			font-size: 17px;
+			width: 25%;
+		}
+
+			.tablink:hover {
+				background-color: #777;
+			}
+
+		/* Style the tab content (and add height:100% for full page content) */
+		.tabcontent {
+			color: white;
+			display: none;
+			padding: 100px 20px;
+			height: 100%;
+		}
+
+		#Home {
+			background-color: red;
+		}
+
+		#News {
+			background-color: green;
+		}
+
+		#Contact {
+			background-color: blue;
+		}
+
+		#About {
+			background-color: orange;
+		}
+
+		.fa{
+			font-size: 20px !important;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="../blacktheme/bootstrap/css/bootstrap.min.css" />
+	<link href="../blacktheme/css/main.css" rel="stylesheet">
+	<link href="../blacktheme/css/font-style.css" rel="stylesheet">
+	<link href="../blacktheme/css/flexslider.css" rel="stylesheet">
+	<link href="../blacktheme/css/pie-chart.css" rel="stylesheet">
+	<script type="text/javascript" src="../blacktheme/js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/jquery-migrate.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/dash-chart.js"></script>
+	<script type="text/javascript" src="../blacktheme/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/lineandbars.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/dash-charts.js"></script>
+
+
+	<script type="text/javascript" src="../blacktheme/js/gauge.js"></script>
+
+	<!-- NOTY JAVASCRIPT -->
+	<script type="text/javascript" src="../blacktheme/js/noty/jquery.noty.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/noty/layouts/top.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/noty/layouts/topLeft.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/noty/layouts/topRight.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/noty/layouts/topCenter.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/quality-chart.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/performance-chart.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/jquery.flexslider.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/noty/themes/default.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/admin.js"></script>
+
+
+	<script src="/socket.io/socket.io.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>-->
+
+	<!-- Theme style -->
+	<link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="../plugins/morris/morris.css">
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+		 folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+
+
+	<script type="text/javascript" src="../kendo/js/sysbarchart.js"></script>
+	<script type="text/javascript" src="../kendo/js/processbarchart.js"></script>
+	<script type="text/javascript" src="../kendo/js/test.js"></script>
+
+	<link href="../kendo/content/shared/styles/examples-offline.css" rel="stylesheet">
+	<link href="../kendo/styles/kendo.common.min.css" rel="stylesheet">
+	<link href="../kendo/styles/kendo.rtl.min.css" rel="stylesheet">
+	<link href="../kendo/styles/kendo.default.min.css" rel="stylesheet">
+	<link href="../kendo/styles/kendo.default.mobile.min.css" rel="stylesheet">
+
+	<script type="text/javascript" src="../kendo/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../kendo/js/jszip.min.js"></script>
+	<script type="text/javascript" src="../kendo/js/kendo.all.min.js"></script>
+
+	<script type="text/javascript" src="../javascripts/GdonutChart.js"></script>
+	<script type="text/javascript" src="../javascripts/GcolumnChart-act1.js"></script>
+	<script type="text/javascript" src="../javascripts/GcolumnChart-act2.js"></script>
+	<script type="text/javascript" src="../javascripts/GbarChart-act.js"></script>
+	<script type="text/javascript" src="../javascripts/Trendlines.js"></script>
+	<script type="text/javascript" src="../javascripts/GcolumnChart-Copy.js"></script>
+	<link rel="stylesheet" href="../stylesheets/kpimain.css">
+	<script type="text/javascript" src="../kendo/content/shared/js/console.js"></script>
+
+	<!-- Bootstrap 3.3.6 -->
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+	<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<!-- You can add more layouts if you want -->
+	<!-- <script type="text/javascript" src="assets/js/dash-noty.js"></script> This is a Noty bubble when you init the theme-->
+	<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js'></script>
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js'></script>
+
+	<style type="text/css">
+		body {
+			padding-top: 60px;
+		}
+	</style>
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<!-- Google Fonts call. Font Used Open Sans & Raleway -->
+	<link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+		function init(){
+			var dataArray = [];
+			var socket = io.connect('http://localhost:8080');
+			socket.emit('Connected', 'HELLO FROm The other side!');
+			socket.on('processData', function (data) {
+				var processData = JSON.parse(JSON.stringify(data));
+				console.log('process data is ' + processData, processData[0].pCycleStartTime, processData[0].pCycleDuration);
+				dataArray.push(processData);
+				console.log("dataArray coming from socket: " + dataArray);
+				drawProcessChart(dataArray);
+			});
+			socket.on('updatedPData', function (newdata) {
+				var update = true;
+				console.log(JSON.stringify(newdata));
+				var updatedPData = JSON.parse(JSON.stringify(newdata));
+				console.log('process update data is ' + updatedPData, updatedPData[0].pCycleStartTime, updatedPData[0].pCycleDuration);
+				dataArray.push(updatedPData);
+				console.log("dataArray coming from socket: " + dataArray);
+				drawProcessChart(dataArray);
+			});
+			socket.on('completeData', function (data) {
+				var completeData = JSON.parse(JSON.stringify(data));
+				console.log('data is ' + completeData, completeData[0].aCycleTime);
+				var arrTime = ((completeData[0].aCycleTime).split(':'));
+				console.log(arrTime);
+				var duration = (Number(arrTime[0] * 360000) + Number(arrTime[1] * 60000) + Number(arrTime[2] * 1000))/1000; 
+				console.log(duration); 
+				var _rvalue = Math.ceil(duration);
+				if(_rvalue != 0 || _rvalue > 100){
+					document.getElementById("value").innerHTML = _rvalue;
+					drawDonutChart(_rvalue);
+				}
+			});
+			socket.on('updateData', function (newdata) {
+				update = true;
+				console.log(JSON.stringify(newdata));
+				var updatedData = JSON.parse(JSON.stringify(newdata));
+				console.log("UPDATE!!" + updatedData);
+				var arrTime = ((updatedData[0].aCycleTime).split(':'));
+				console.log(arrTime);
+				var duration = (Number(arrTime[0] * 360000) + Number(arrTime[1] * 60000) + Number(arrTime[2] * 1000))/1000; 
+				console.log(duration); 
+				var _rvalue = Math.ceil(duration);
+				if(_rvalue != 0 || _rvalue > 100){
+					document.getElementById("value").innerHTML = _rvalue;
+					drawDonutChart(_rvalue);
+				}
+				
+			});
+		}
+      google.charts.load('current', {callback: init, 'packages':['corechart']});
+	  google.charts.load('current', {'packages':['bar']});
+    //  google.charts.setOnLoadCallback(drawDonutChart);
+	  google.charts.setOnLoadCallback(drawTrendChart);
+	  google.charts.setOnLoadCallback(drawBarChart);
+	  google.charts.setOnLoadCallback(drawColChart);
+	  google.charts.setOnLoadCallback(drawCollChart);
+
+	  
+	</script>
+	
+</head>
+<!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
+<!-- the fixed layout is not compatible with sidebar-mini -->
+<body class="hold-transition skin-blue fixed sidebar-mini" style="padding-top: 0">
+
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>W</b>MG</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>WMG </b>KPI Dashboard</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="/dist/img/icon-user.png" class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    Support Team
+                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <!-- end message -->
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger">9</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 9 tasks</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Design some buttons
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/dist/img/icon-user.png" class="user-image" alt="User Image">
+                                <span class="hidden-xs"><%= name %></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <p>
+                                        Alexander Pierce - Web Developer
+                                        <small>Member since Nov. 2012</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Followers</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Sales</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Friends</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- =============================================== -->
+        <!-- Left side column. contains the sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="/dist/img/icon-user.png" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p><%= name %></p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Festo Rig Dashboard</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+						<ul class="treeview-menu">
+                            <li class="treeview menu-open"><a href="../processd"><i class="fa fa-circle-o"></i> Distribution
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+								<ul class="treeview-menu" style="display: block;">
+               <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>-->
+                <li class="treeview menu-open">
+                 <!-- <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>-->
+                  <ul class="treeview-menu" style="display: block;">
+                    <li class="treeview active"><a href="#"><i class="fa fa-circle-o"></i> Pusher</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Swivel Arm</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> Swivel Gripper</a></li>
+                  </ul>
+                </li>
+              </ul>
+			</li>
+                <li class="treeview menu-open"><a href="../../index.html"><i class="fa fa-circle-o"></i> Buffering
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+								<ul class="treeview-menu" style="display: block;">
+               <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>-->
+                <li class="treeview menu-open">
+                 <!-- <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>-->
+                  <ul class="treeview-menu" style="display: block;">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Conveyor Belt</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Stopper</a></li>
+                  </ul>
+                </li>
+              </ul>
+			</li>
+			
+			<li class="treeview menu-open"><a href="../../index.html"><i class="fa fa-circle-o"></i> Processing
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+								<ul class="treeview-menu" style="display: block;">
+               <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>-->
+                <li class="treeview menu-open">
+                 <!-- <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>-->
+                  <ul class="treeview-menu" style="display: block;">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Rotary Table</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Part Checker</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> Driller</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> Clamp</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> Unloader</a></li>
+                  </ul>
+                </li>
+              </ul>
+			</li>
+			
+			<li class="treeview menu-open"><a href="../../index.html"><i class="fa fa-circle-o"></i> Handling
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+								<ul class="treeview-menu" style="display: block;">
+               <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>-->
+                <li class="treeview menu-open">
+                 <!-- <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>-->
+                  <ul class="treeview-menu" style="display: block;">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Gripper</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Y-Axes</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> Z-Axes</a></li>
+                  </ul>
+                </li>
+              </ul>
+			</li>
+			
+              </ul>
+                        
+                    </li>
+            
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>System</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-laptop"></i>
+                            <span>Processes</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="/availability">
+                            <i class="fa fa-edit"></i> <span>Components</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-table"></i> <span>Sequence</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../calendar.html">
+                            <i class="fa fa-calendar"></i> <span>Calendar</span>
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-red">3</small>
+                                <small class="label pull-right bg-blue">17</small>
+                            </span>
+                        </a>
+                    </li>
+                   
+                    <!--<li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>-->
+                    <li class="header">LABELS</li>
+                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- =============================================== -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header" style="margin: 20px 1px;">
+                <h1 style="color: #333; font-size: 32px">
+                    KPI Dashboard
+                    <small>home</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                </ol>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+			
+				<div class="row" style="padding-left: 8%;">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 demo">
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-5 col-xs-5 demo">
+											
+							<div class="all-container">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chart-container" nbsp; nbsp; nbsp;>
+									
+									<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 chart-container chart-separator">
+									<div id="sys_donut" style="width: 100%; height: 100%;">
+									</div>
+									<div id="labelOverlay">
+										<p id="value" class="used-size"><b></b></p>
+										
+									</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 chart-container">
+										<div class="row row-data">
+											<h4 class="side-bar">
+												trg
+											<br>
+											  30
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #f16c0e;">
+												avg
+											<br>
+											   25
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #F15240;">
+												max
+											<br>
+											 33
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #4BBF34;">
+												min
+											<br>
+											 19
+											</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><p style="font-size: 0.6vw;">Cycle Time</p></div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><p style="text-align: right; font-size: 0.6vw">seconds</p>
+								</div></div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-container"><h4 style="color: white; font-size: 0.8vw">Pusher Current Cycle Duration</h4></div>
+								<div class="clearfix"></div>
+							</div>
+						</a>
+					</div>
+					
+					
+				
+				<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8 demo">
+											
+							<div class="all-container">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chart-container">
+									<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 chart-container chart-separator">
+									<div id="act_cycles" style="width: 100%; height: 100%;"></div>
+									</div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 chart-container">
+										<div class="row row-data">
+											<h4 class="side-bar">
+												trg
+											<br>
+											 30
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #f16c0e;">
+												avg
+											<br>
+											 25
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #F15240;">
+												max
+											<br>
+											 33
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #4BBF34;">
+												min
+											<br>
+											 19.8
+											</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><p>Cycle Time</p></div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><p style="text-align: right;">seconds</p>
+								</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-container"><h4 style="color: white; font-size: 11pt">Pusher home to work cycles/ day</h4></div>
+								<div class="clearfix"></div>
+							</div>
+						</a>
+					</div>
+					
+					
+				</div>
+				<div class="row" style="padding-left: 8%;">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 demo">
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8 demo">
+											
+							<div class="all-container">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chart-container">
+									<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 chart-container chart-separator">
+									<div id="test_col" style="width: 100%; height: 100%;"></div>
+									</div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 chart-container">
+										<div class="row row-data">
+											<h4 class="side-bar">
+												trg
+											<br>
+											 30
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #f16c0e;">
+												avg
+											<br>
+											 25
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #F15240;">
+												max
+											<br>
+											 33
+											</h4>
+										</div>
+										<div class="row row-data">
+											<h4 class="side-bar" style="color: #4BBF34;">
+												min
+											<br>
+											 19.8
+											</h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><p>Cycle Time</p></div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><p style="text-align: right;">seconds</p>
+								</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-container"><h4 style="color: white; font-size: 11pt">Pusher work to home cycles/ day</h4></div>
+								<div class="clearfix"></div>
+							</div>
+						</a>
+					</div>
+					
+				</div>
+              
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.3.8
+            </div>
+			<strong>Copyright &copy; 2014- <%= new Date(2018, 11).getFullYear() %> <a href="https://warwick.ac.uk/fac/sci/wmg/research/automation/">WMG Automation Systems Group</a>.</strong> All rights
+            reserved.
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Recent Activity</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                    <p>Will be 23 on April 24th</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-user bg-yellow"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                                    <p>New phone +1(800)555-1234</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                                    <p>nora@example.com</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                                    <p>Execution time 5 seconds</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">
+                                    Custom Template Design
+                                    <span class="label label-danger pull-right">70%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">
+                                    Update Resume
+                                    <span class="label label-success pull-right">95%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">
+                                    Laravel Integration
+                                    <span class="label label-warning pull-right">50%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">
+                                    Back End Framework
+                                    <span class="label label-primary pull-right">68%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+                </div>
+                <!-- /.tab-pane -->
+                <!-- Stats tab content -->
+                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">General Settings</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Report panel usage
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Allow mail redirect
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Other sets of options are available
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Expose author name in posts
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Allow the user to show his name in blog posts
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+                        <h3 class="control-sidebar-heading">Chat Settings</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Show me as online
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Turn off notifications
+                                <input type="checkbox" class="pull-right">
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Delete chat history
+                                <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+    <!-- ./wrapper -->
+    <!-- jQuery 2.2.3 -->
+    <!--<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>-->
+    <!-- Bootstrap 3.3.6 -->
+    <!--<script src="../bootstrap/js/bootstrap.min.js"></script>-->
+    <!-- SlimScroll -->
+    <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/app.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+	
+	
+	
+</body>
+</html>

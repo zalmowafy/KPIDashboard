@@ -1,0 +1,51 @@
+﻿{
+  "System": {
+    "tagtype": "char",
+    "spare": "byte",
+    "DepSysId": "integer",
+    "CycleId": "integer",
+    "CycleStartTime": "datetime",
+    "CycleDuration": "time",
+    "DCycleMin": "time",
+    "DCycleMax": "time",
+    "LCycleMin": "time",
+    "sLCycleAvg": "time",
+    "sLCycleMax": "time",
+    "sWaitTime": "time"
+  },
+
+  "Process": {
+    "tagtype": "char",
+    "spare": "byte",
+    "DepSysId": "integer",
+    "DepProcessId": "integer",
+    "CycleId": "integer",
+    "CycleStartTime": "datetime",
+    "CycleDuration": "time",
+    "DCycleMin": "time",
+    "DCycleMax": "time",
+    "LCycleMin": "time",
+    "LCycleAvg": "time",
+    "LCycleMax": "time",
+    "pWaitTime": "time"
+  },
+
+  "Component": {
+    "tagtype": "char",
+    "spare": "byte",
+    "DepSysId": "integer",
+    "DepProcessId": "integer",
+    "DepCompId": "integer",
+    "CycleId": "integer",
+    "MotionStatus": "integer",
+    "CycleStartTime": "datetime",
+    "MotionDuration": "time",
+    "CycleTime": "time",
+    "DCycleMax": "time",
+    "DCycleMin": "time",
+    "LCycleMin": "time",
+    "LCycleAvg": "time",
+    "LCycleMax": "time",
+    "cWaitTime": "time"
+  }
+}

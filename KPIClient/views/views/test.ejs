@@ -1,0 +1,141 @@
+﻿<html>
+<head>
+<script type="text/javascript" src="../blacktheme/js/test.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../blacktheme/bootstrap/css/bootstrap.min.css" />
+    <link href="../blacktheme/css/main.css" rel="stylesheet">
+    <link href="../blacktheme/css/font-style.css" rel="stylesheet">
+    <link href="../blacktheme/css/flexslider.css" rel="stylesheet">
+	<link href="../blacktheme/css/pie-chart.css" rel="stylesheet">
+    <script type="text/javascript" src="../blacktheme/js/jquery.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/dash-chart.js"></script>
+    <script type="text/javascript" src="../blacktheme/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../blacktheme/js/lineandbars.js"></script>
+    <script type="text/javascript" src="../blacktheme/js/dash-charts.js"></script>
+    
+	
+    <!--<script type="text/javascript" src="../blacktheme/js/gauge.js"></script>-->
+    
+    <!-- NOTY JAVASCRIPT -->
+    <script type="text/javascript" src="../blacktheme/js/noty/jquery.noty.js"></script>
+    <script type="text/javascript" src="../blacktheme/js/noty/layouts/top.js"></script>
+    <script type="text/javascript" src="../blacktheme/js/noty/layouts/topLeft.js"></script>
+    <script type="text/javascript" src="../blacktheme/js/noty/layouts/topRight.js"></script>
+    <script type="text/javascript" src="../blacktheme/js/noty/layouts/topCenter.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/quality-chart.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/performance-chart.js"></script>
+	<script type="text/javascript" src="../blacktheme/js/jquery.flexslider.js" ></script>
+	<script type="text/javascript" src="../blacktheme/js/noty/themes/default.js"></script>
+    <script type="text/javascript" src="../blacktheme/js/admin.js"></script>
+	 
+	 <script src="/socket.io/socket.io.js"></script>
+
+	 <!-- Theme style -->
+    <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="/plugins/morris/morris.css">
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
+	
+
+    <base href="https://demos.telerik.com/kendo-ui/bar-charts/column">
+    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>
+    <title></title>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css" />
+
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
+
+	
+
+	    <!-- Bootstrap 3.3.6 -->
+   
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- You can add more layouts if you want -->
+    
+    <!-- <script type="text/javascript" src="assets/js/dash-noty.js"></script> This is a Noty bubble when you init the theme-->
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+   
+	
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js'></script>
+	
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js'></script>
+
+	
+	
+
+	
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Google Fonts call. Font Used Open Sans & Raleway -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
+	
+	
+	
+        <script>
+            var socket = io.connect('http://localhost:8080');
+			
+			socket.emit('Connected', 'HELLO FROm The other side!');
+			socket.on('completeData', function(data){
+				var completeData = JSON.stringify(data);
+				var update = false;
+				console.log('data is ' + completeData);
+				console.log('habal');
+				
+				
+			});
+			socket.on('updateData', function(newdata){
+				var updatedData = JSON.stringify(newdata);
+				var update = true;
+				console.log(updatedData);
+				console.log(update);
+				createChart(updatedData,update);
+				
+			});
+        </script>
+
+</head>
+<body>
+<div id="example">
+    <div class="demo-section k-content wide">
+        <div id="chart" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
+    </div>
+   <script>
+		$(document).ready(createChart);
+		$(document).bind("kendo:skinChange", createChart);
+	</script
+</div>
+
+
+    
+</body>
+</html>
